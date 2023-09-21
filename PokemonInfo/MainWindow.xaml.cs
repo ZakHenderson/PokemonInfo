@@ -29,7 +29,7 @@ namespace PokemonInfo
             InitializeComponent();
 
             string url = "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0";
-            
+
             using (var client = new HttpClient())
             {
                 var response = client.GetStringAsync(url).Result;
@@ -72,36 +72,44 @@ namespace PokemonInfo
 
         private void btnFlip_Click(object sender, RoutedEventArgs e)
         {
+            
             int numIndex = cboPokemon.SelectedIndex;
             string backurl = $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/{numIndex + 1}.png";
             string fronturl = $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{numIndex + 1}.png";
 
             string url = "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0";
 
+            bool isBackImageDisplayed = false;
+
             using (var client = new HttpClient())
             {
                 var response = client.GetStringAsync(url).Result;
                 var pokemon = JsonConvert.DeserializeObject<PokemonAPI>(response);
 
+                if (imgPokemon.Source.ToString() == fronturl)
+            {
+                    isBackImageDisplayed = false;
+                }
+                else
+                {
+                    isBackImageDisplayed = true;
+                }
+
+
+                if (!isBackImageDisplayed)
+                {
+                    imgPokemon.Source = new BitmapImage(new Uri(backurl));
+                }
+                else
+                {
+                    imgPokemon.Source = new BitmapImage(new Uri(fronturl));
+                }
+
                 
 
-                if ()
-                {
-                    
-                }
+
             }
-
-            //if (isOriginalImageDisplayed)
-            //{
-            //    pictureBox.ImageLocation = alternateImageUrl;
-            //}
-            //else
-            //{
-            //    pictureBox.ImageLocation = originalImageUrl;
-            //}
-
-            //isOriginalImageDisplayed = !isOriginalImageDisplayed;
         }
     }
+
 }
-    
