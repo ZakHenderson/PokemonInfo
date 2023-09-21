@@ -8,6 +8,7 @@ namespace PokemonInfo
 {
     public class PokemonAPI
     {
+        //results list for the pokemon items
         public List<PokemonItem> results { get; set; }
 
         
@@ -22,12 +23,12 @@ namespace PokemonInfo
 
         public double weight { get; set; }
 
-
+        //override to be able to list names inside the combo box
         public override string ToString()
         {
             return name;
         }
-
+        // this class might be wrong might not be
         public PokemonItem()
         {
             string name = string.Empty;
