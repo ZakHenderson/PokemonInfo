@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,7 +29,7 @@ namespace PokemonInfo
             InitializeComponent();
 
             string url = "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0";
-
+            
             using (var client = new HttpClient())
             {
                 var response = client.GetStringAsync(url).Result;
@@ -47,14 +48,60 @@ namespace PokemonInfo
 
         private void cboPokemon_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cboPokemon.SelectedItem is PokemonItem selectedPokemon)
-            {
-                // Create a list of selected Pokémon to display in the ListBox
-                var selectedPokemonList = new List<PokemonItem> { selectedPokemon };
+            int numIndex = cboPokemon.SelectedIndex;
 
-                // Set the ListBox's ItemsSource to the list of selected Pokémon
-                lstPokemon.ItemsSource = selectedPokemonList;
+            string fronturl = $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{numIndex + 1}.png";
+
+            string url = "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0";
+
+            using (var client = new HttpClient())
+            {
+                var response = client.GetStringAsync(url).Result;
+                var pokemon = JsonConvert.DeserializeObject<PokemonAPI>(response);
+
+                lstPokemon.Items.Clear();
+
+                if (cboPokemon.SelectedIndex == numIndex)
+                {
+                    imgPokemon.Source = new BitmapImage(new Uri(fronturl));
+                    lstPokemon.Items.Add("Name: " + pokemon.results[numIndex].name + " Height: " + pokemon.results[numIndex].height + " Weight: " + pokemon.results[numIndex].weight);
+                }
             }
+
+        }
+
+        private void btnFlip_Click(object sender, RoutedEventArgs e)
+        {
+            int numIndex = cboPokemon.SelectedIndex;
+            string backurl = $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/{numIndex + 1}.png";
+            string fronturl = $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{numIndex + 1}.png";
+
+            string url = "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0";
+
+            using (var client = new HttpClient())
+            {
+                var response = client.GetStringAsync(url).Result;
+                var pokemon = JsonConvert.DeserializeObject<PokemonAPI>(response);
+
+                
+
+                if ()
+                {
+                    
+                }
+            }
+
+            //if (isOriginalImageDisplayed)
+            //{
+            //    pictureBox.ImageLocation = alternateImageUrl;
+            //}
+            //else
+            //{
+            //    pictureBox.ImageLocation = originalImageUrl;
+            //}
+
+            //isOriginalImageDisplayed = !isOriginalImageDisplayed;
         }
     }
 }
+    

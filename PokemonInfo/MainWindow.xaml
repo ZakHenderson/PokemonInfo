@@ -7,12 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button x:Name="btnFlip" Content="Button" Margin="10,62,649,331"/>
+        <Button x:Name="btnFlip" Content="Button" Margin="10,62,649,331" Click="btnFlip_Click"/>
         <Label Content="Flip" Margin="60,30,700,377"/>
         <ComboBox x:Name="cboPokemon" HorizontalAlignment="Left" Margin="225,67,0,0" VerticalAlignment="Top" Width="294" Height="16" SelectionChanged="cboPokemon_SelectionChanged"/>
         <Label Content="Pokemon List" Margin="330,30,386,377"/>
         <Image x:Name="PikachuFace" Source="/Screen_Shot_2018-10-25_at_11.02.15_AM.jpg" Margin="540,3,10,266"/>
-        <Image x:Name="imgPokemon" Margin="537,201,12,17"/>
-        <ListBox x:Name="lstPokemon" d:ItemsSource="{d:SampleData ItemCount=0}" Margin="225,217,287,35"/>
+        <Image x:Name="imgPokemon" Margin="244,200,306,18"/>
+        <ListBox x:Name="lstPokemon" d:ItemsSource="{d:SampleData ItemCount=0}" Margin="225,152,287,252"/>
     </Grid>
 </Window>

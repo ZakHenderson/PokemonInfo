@@ -18,12 +18,22 @@ namespace PokemonInfo
         public string name { get; set; }
         public string url { get; set; }
 
-        public string height { get; set; }
+        public double height { get; set; }
 
-        public string weight { get; set; }
+        public double weight { get; set; }
+
+
         public override string ToString()
         {
             return name;
+        }
+
+        public PokemonItem()
+        {
+            string name = string.Empty;
+            string url = string.Empty;
+            double height = 0.0;
+            double weight = 0.0;
         }
     }
 
