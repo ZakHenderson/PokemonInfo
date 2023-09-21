@@ -18,7 +18,7 @@ using System.Windows.Shapes;
 using static System.Net.WebRequestMethods;
 //I want to be able to call information into my list box that relates to the pokemon desired. For instance if you click on the pokemon charizard
 //it should tell you its name, and other desired information such as height weight, maybe abilities or evolutions or something. for now Im just trying to figure out like
-// height and weight of the pokemon. currently it just displays the info "height: 0 and weight: 0" because i cant figure it out haha.
+// height and weight of the pokemon. currently it just displays the info "height: 0 and weight: 0" because i cant figure it out haha. 
 namespace PokemonInfo
 {
     /// <summary>
