@@ -95,7 +95,7 @@ namespace PokemonInfo
                     isBackImageDisplayed = true;
                 }
 
-
+                
                 if (!isBackImageDisplayed)
                 {
                     imgPokemon.Source = new BitmapImage(new Uri(backurl));
